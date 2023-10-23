@@ -1,0 +1,106 @@
+﻿<Window x:Class="wpfTableEdit"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Editační tabulka záruk" Height="600" Width="800" Icon="Zaruky.ico" MinWidth="512" MinHeight="384" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="CanResizeWithGrip" Background="{StaticResource LightBrush}" >
+    <Window.Resources>
+        <ContextMenu x:Key="ToolMenu" >
+            <MenuItem x:Name="miRemove" Header="Odstranit vybrané rádky    Delete" Click="miRemove_Click" >
+                <MenuItem.Icon>
+                    <Image Source="{StaticResource imgOdebrat}" Width="16" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="miPaste" Header="Vložit data ze schránky      Ctrl+V" Click="miPaste_Click" >
+                <MenuItem.Icon>
+                    <Image Source="{StaticResource imgPaste}" Width="16" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="miCopy" Header="Zkopírovat do schránky     Ctrl+C" Click="miCopy_Click" >
+                <MenuItem.Icon>
+                    <Image Source="{StaticResource imgCopy}" Width="16" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="miNum" Header="Přečíslovat vybrané řádky" Click="miNum_Click" >
+                <MenuItem.Icon>
+                    <Image Source="{StaticResource img123}" Width="16" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="miCheck" Header="Nastavit hodnotu" Click="miCheck_Click" >
+                <MenuItem.Icon>
+                    <Image Source="{StaticResource imgOK}" Width="16" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Margin="5,30" VerticalAlignment="Top">
+                <Button x:Name="btnUlozit" Background="{StaticResource ControlBrush}">
+                    <Image Source="{StaticResource imgUlozit}" Height="40" ToolTip="Uložit změny&#x0a;a ukončit editaci."/>
+                </Button>
+                <Button x:Name="btnNeukladat" Margin="0,15,0,0" Background="{StaticResource ControlBrush}">
+                    <Image Source="{StaticResource imgOknoZavrit}" Height="40" ToolTip="Neukládat změny&#x0a;a ukončit editaci."/>
+                </Button>
+                <Button x:Name="btnExport" Margin="0,15,0,0" Background="{StaticResource ControlBrush}">
+                    <Image Source="{StaticResource imgExcel}" Height="40" ToolTip="Exportovat do souboru." />
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Exportovat do CSV" Click="cmiXLS_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{StaticResource imgExcel}" Width="16" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Exportoval do XML" Click="cmiXML_Click"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+            </StackPanel>
+            <StackPanel Margin="5,30" Grid.Row="1" VerticalAlignment="Bottom">
+                
+                <Button x:Name="btnHelp" Background="{StaticResource ControlBrush}">
+                    <Image Source="{StaticResource imgHelp}" Height="40" ToolTip="Nápověda." ContextMenu="{StaticResource ToolMenu}" />
+                </Button>
+                <TextBlock Text="číslovat" ToolTip="Číslovat pořadové číslo nové položky v rámci všech databází." Margin="0,15,0,0" Foreground="{StaticResource FontBrush}" />
+                <CheckBox x:Name="ckbCislo" ToolTip="Číslovat pořadové číslo nové položky v rámci všech databází." Margin="13,0,0,0" Foreground="{StaticResource FontBrush}" />
+                <Button x:Name="btnSmazat" Margin="0,15,0,0" Background="{StaticResource ControlBrush}">
+                    <Image Source="{StaticResource imgOdebratVec}" Height="40" ToolTip="Smazat vybrané řádky." />
+                </Button>
+                <Button x:Name="btnPridat" Margin="0,15,0,0" Background="{StaticResource ControlBrush}">
+                    <Image Source="{StaticResource imgPridatVec}" Height="40" ToolTip="Přidat řádek."/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <DataGrid ItemsSource="{Binding}" Tag="Zaruky" x:Name="mDataGrid" ContextMenu="{StaticResource ToolMenu}" FontSize="12" Grid.Row="1" BorderThickness="0" GridLinesVisibility="None" AutoGenerateColumns="False" RowBackground="{StaticResource ActiveBrush}" AlternatingRowBackground="{StaticResource InActiveBrush}" Background="{StaticResource DisabledBrush}" MinRowHeight="20" Grid.Column="1" RowHeaderWidth="20" CanUserAddRows="False" >
+            <DataGrid.Resources>
+                <LinearGradientBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" StartPoint="0,0" EndPoint="0,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0" Color="#FFE3F4FC"/>
+                        <GradientStop Offset="0.38" Color="#FFD8EFFC"/>
+                        <GradientStop Offset="0.38" Color="#FFBEE6FD"/>
+                        <GradientStop Offset="1" Color="#FFA6D9F4"/>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="{x:Static SystemColors.ControlBrushKey}" StartPoint="0,0" EndPoint="0,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0" Color="#FFE3F4FC"/>
+                        <GradientStop Offset="0.38" Color="#FFD8EFFC"/>
+                        <GradientStop Offset="0.38" Color="#FFBEE6FD"/>
+                        <GradientStop Offset="1" Color="#FFA6D9F4"/>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Blue" />
+
+            </DataGrid.Resources>
+        </DataGrid>
+    </Grid>
+</Window>

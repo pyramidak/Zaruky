@@ -1,0 +1,30 @@
+﻿<Page x:Class="ppfAbout"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="330" d:DesignWidth="450"
+      Width="Auto" MinWidth="440" MinHeight="330">
+    <Grid Background="AliceBlue" Width="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="#FFCFE0F9" BorderThickness="1" Height="35" Margin="20,20,20,0" Name="Border1" VerticalAlignment="Top" CornerRadius="15" Background="#FFCFE0F9" />
+        <Label Content="O programu" Height="35" HorizontalAlignment="Stretch" Margin="30,20,20,20" Name="lblHeader" VerticalAlignment="Top" Width="Auto" FontSize="18" FontWeight="Bold" />
+        <TextBlock FontSize="13" Height="20" HorizontalAlignment="Stretch" Margin="150,0,35,0" Name="lblApp" Text="pyramidak   Záruky  Version 4.0.0" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold" Foreground="DimGray" />
+        <Image Grid.Row="1" Height="95" HorizontalAlignment="Left" Margin="30,0,0,0" Name="Image1" Stretch="Fill" VerticalAlignment="Top" Width="95" Source="{StaticResource imgPyramidak}" />
+        <TextBlock FontSize="13" FontWeight="Bold" Foreground="DimGray" Height="20" HorizontalAlignment="Stretch" Margin="150,17,35,0" Name="lblCop" Text="Copyright © 2002-20XX by Zdeněk Jantač" VerticalAlignment="Top" Grid.Row="1" />
+        <TextBlock Grid.Row="1" Height="20" HorizontalAlignment="Left" Margin="150,54,0,0" Name="txtMail" VerticalAlignment="Top" Width="Auto" Text="zdenek@jantac.net" FontSize="13" TextDecorations="Underline"/>
+        <TextBlock Grid.Row="1" Height="20" HorizontalAlignment="Left" Margin="150,75,0,0" Name="txtWeb" VerticalAlignment="Top" Width="Auto" FontSize="13" Text="http://vb.jantac.net" TextDecorations="Underline"/>
+        <TextBlock x:Name="txtWindows" Height="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,32,40,0" Text="Windows" TextDecorations="Underline" />
+        <GroupBox x:Name="gbxLicense" Header="Tento software je licencován pro" Margin="30,110,30,0" Grid.Row="1" Height="80" VerticalAlignment="Top">
+            <StackPanel Margin="10" >
+                <TextBlock x:Name="lblJmeno" Foreground="DimGray" FontSize="13" FontWeight="Bold" Padding="0,0,0,0" />
+                <TextBlock x:Name="lblAdresa" Foreground="DimGray" FontSize="13" FontWeight="Bold" Padding="0,0,0,0" />
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Page>

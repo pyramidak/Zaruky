@@ -1,0 +1,59 @@
+﻿<Page x:Class="ppfRegistr"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RootSpace"    
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="550"
+      Width="Auto">
+    <Grid Background="#FFFFE5E5" Width="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="2" BorderBrush="#FFFBB5B5" BorderThickness="1" Height="35" Margin="20,20,20,0" Name="Border1" VerticalAlignment="Top" CornerRadius="15" Background="#FFFBB5B5" />
+        <Label Grid.ColumnSpan="2" Content="Registrace Pro verze na" Height="35" HorizontalAlignment="Stretch" Margin="30,20,20,20" Name="lblHeader" VerticalAlignment="Top" Width="Auto" FontSize="18" FontWeight="Bold" />
+        <StackPanel Orientation="Horizontal"  Margin="15,15,0,10" Grid.Row="2" Grid.ColumnSpan="2" >
+            <Button Content="Poslat žádost" Padding="10,0" Height="30" Width="Auto" HorizontalAlignment="Left" Margin="10,0" Name="btnSend" VerticalAlignment="Top" Background="{DynamicResource ControlBrush}" VerticalContentAlignment="Center" />
+            <Button Content="Zkopírovat žádost" Padding="10,0" Height="30" Width="Auto" HorizontalAlignment="Left" Margin="10,0" Name="btnCopy" VerticalAlignment="Top" Background="{DynamicResource ControlBrush}" VerticalContentAlignment="Center" />
+        </StackPanel>
+        
+        <StackPanel Margin="25,0,10,0" Grid.Row="1" >
+            <CheckBox x:Name="ckbWindows" Content="Produktové číslo Windows" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtWindows" VerticalAlignment="Top" Background="#FFE5E5E5" Margin="0,5,0,0" HorizontalContentAlignment="Center" Height="23" IsReadOnly="True" />
+            <CheckBox x:Name="ckbHarddisk" Content="Výrobní číslo disku" VerticalAlignment="Top" Margin="0,15,0,0"/>
+            <ComboBox x:Name="cbxHarddisk" VerticalAlignment="Top" ItemsSource="{Binding}" SelectedValuePath="SerialNumber" DisplayMemberPath="Model" Height="23" Margin="0,5,0,0"/>
+            <CheckBox x:Name="ckbDrive" Content="Číslo logického disku" VerticalAlignment="Top" Margin="0,15,0,0"/>
+            <local:DriveCombo x:Name="mDriveCombo" VerticalAlignment="Top" Height="23" Margin="0,5,0,0" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,15,0,0" >
+                <TextBlock Text="Výše příspěvku v Kč" VerticalAlignment="Center" />
+                <TextBox x:Name="txtMoney" VerticalAlignment="Top" Background="#FFE5E5E5" HorizontalContentAlignment="Center" Height="23" Width="50" VerticalContentAlignment="Center" FontWeight="Bold" Margin="10,0,0,0" IsReadOnly="True" Text="300"     />
+            </StackPanel>
+            
+            <TextBlock Text="Vaše jméno nebo název společnosti a IČO:" Margin="0,15,10,0" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="35*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="txtJmeno" VerticalAlignment="Top" Margin="0,5,5,0" Height="23" HorizontalContentAlignment="Center" Background="{StaticResource LightBrush}" FontWeight="Bold" />
+                <TextBox x:Name="txtICO" VerticalAlignment="Top" Margin="0,5,0,0" Height="23" HorizontalContentAlignment="Center" Background="{StaticResource LightBrush}" FontWeight="Bold" Grid.Column="1" />
+            </Grid>
+            <TextBlock Text="Vaše emailová adresa:" Margin="0,10,10,0" />
+            <TextBox x:Name="txtAdresa" VerticalAlignment="Top" Margin="0,5,0,0" Height="23" HorizontalContentAlignment="Center" Background="{StaticResource LightBrush}" FontWeight="Bold" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" >
+            <TextBlock x:Name="txtRule"  TextWrapping="Wrap"  Margin="20,0,30,0" MaxWidth="250" />
+            <Border Margin="10,20,25,0" MaxWidth="250" Background="#FFFBB5B5" CornerRadius="10"  >
+                <TextBlock Margin="10,5" x:Name="txtInfo" TextWrapping="Wrap"/>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

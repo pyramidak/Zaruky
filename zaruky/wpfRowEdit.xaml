@@ -1,0 +1,208 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:RootSpace" 
+    x:Name="wEdit" 
+    x:Class="wpfRowEdit"
+    Title="Editační formulář záruk" Height="445" Width="650" Icon="Zaruky.ico" MinWidth="650" MinHeight="445" WindowStartupLocation="CenterOwner" ResizeMode="CanResizeWithGrip" ShowInTaskbar="False" Background="{StaticResource LightBrush}" MaxHeight="445">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10,10,10,5">
+            <Grid Height="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Číslo" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblVec" Text="Položka" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <CheckBox x:Name="ckbOwn" IsChecked="{Binding Path=OwnCheck}" Content="Vyřízeno" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,0" FlowDirection="RightToLeft" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblSerNum" Text="Sériové číslo" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5.4,0,0,0" Grid.Column="2" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+            </Grid>
+            <Grid Height="32" Background="{StaticResource BackenBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="txtID" Text="{Binding Path=NewID, Converter={StaticResource DataConverter}, NotifyOnTargetUpdated=True}" Margin="5" TargetUpdated="txtID_Validating" MaxLength="5" />
+                <ComboBox x:Name="cbxVec" Margin="5" Grid.Column="1" IsEditable="True" local:EditableComboBox.MaxLength="40" />
+                <TextBox x:Name="txtSerNum" Text="{Binding Path=SerNum}" Margin="5" Grid.Column="2" MaxLength="20"/>
+            </Grid>
+            <Grid Height="35">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="lblDatPoc" Text="Koupeno dne" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblRoky" Text="Záruka roků" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblMesice" Text="Záruka měsíců" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblDatKon" Text="Záruka končí" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" Grid.Column="3" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblDatOpt" Text="Prodáno dne" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" Grid.Column="4" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblCenaOpt" Text="Prodejní cena" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" Grid.Column="5" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+            </Grid>
+            <Grid Height="32" Background="{StaticResource BackenBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="txtDatPoc" Margin="5" HorizontalContentAlignment="Center" MaxLength="12" />
+                <TextBox x:Name="txtRoky" Margin="5" Grid.Column="1" HorizontalContentAlignment="Center" MaxLength="2" />
+                <TextBox x:Name="txtMesice" Margin="5" Grid.Column="2" HorizontalContentAlignment="Center" MaxLength="2" />
+                <TextBox x:Name="txtDatKon" Text="{Binding Path=DatKon, Converter={StaticResource DataConverter}, ConverterParameter='d'}" Margin="5" Grid.Column="3" HorizontalContentAlignment="Center" MaxLength="12" />
+                <TextBox x:Name="txtDatOpt" Text="{Binding Path=DatOpt, Converter={StaticResource DataConverter}, ConverterParameter='d'}" Margin="5" Grid.Column="4" HorizontalContentAlignment="Center" MaxLength="12" />
+                <TextBox  x:Name="txtCenaOpt" Text="{Binding Path=CenaOpt, Converter={StaticResource DataConverter}, ConverterParameter='N2'}" Margin="5" Grid.Column="5" HorizontalContentAlignment="Right" MaxLength="10" />
+                <TextBlock x:Name="lblMenaOpt" Margin="5" Grid.Column="6" Text="EUR" VerticalAlignment="Center" />
+            </Grid>
+            <Grid Height="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="27*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="lblDodavatel" Text="Dodavatel" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblFaktura" Text="Daňový doklad" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblCena" Text="Nákupní cena" Grid.Column="2" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5.4,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+            </Grid>
+            <Grid Height="32" Background="{StaticResource BackenBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="27*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="cbxDodavatel" Text="{Binding Path=Dodavatel}" Margin="5" IsEditable="True" local:EditableComboBox.MaxLength="40" />
+                <TextBox x:Name="txtFaktura" Text="{Binding Path=Faktura}" Margin="5" Grid.Column="1" MaxLength="20" />
+                <TextBox x:Name="txtCena" Text="{Binding Path=Cena, Converter={StaticResource DataConverter}, ConverterParameter='N2'}" Margin="5" Grid.Column="2" HorizontalContentAlignment="Right" MaxLength="10"/>
+                <TextBlock x:Name="lblMena" Margin="5" Grid.Column="3" Text="EUR" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Height="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="lblOptio2" Text="2.volitelný" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblOptio3" Text="3.volitelný" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+            </Grid>
+            <Grid Height="32" Background="{StaticResource BackenBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="txtOptio2" Text="{Binding Path=Optio2}" Margin="5" MaxLength="30" />
+                <TextBox x:Name="txtOptio3" Text="{Binding Path=Optio3}" Margin="5" Grid.Column="1" MaxLength="30" />
+            </Grid>
+            <Grid Height="20">
+                <TextBlock x:Name="lblOptio1" Text="1.volitelný" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+            </Grid>
+            <Grid Height="32" Background="{StaticResource BackenBrush}">
+                <ComboBox x:Name="cbxOptio1" Text="{Binding Path=Optio1}" Margin="5" IsEditable="True" local:EditableComboBox.MaxLength="60" TextBoxBase.TextChanged="ComboBox_TextChanged" />
+            </Grid>
+            <Grid Height="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="lblOptio4" Text="4.volitelný" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+                <TextBlock x:Name="lblOptio5" Text="5.volitelný" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="5,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource FontBrush}" />
+            </Grid>
+            <Grid Height="32" Background="{StaticResource BackenBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="cbxOptio4" Text="{Binding Path=Optio4}" Margin="5" IsEditable="True" local:EditableComboBox.MaxLength="30" TextBoxBase.TextChanged="ComboBox_TextChanged" />
+                <TextBox x:Name="txtOptio5" Text="{Binding Path=Optio5}" Margin="5" Grid.Column="1" MaxLength="30" />
+            </Grid>
+            <StackPanel Orientation="Horizontal" Height="15" Margin="0,10,0,0">
+                <CheckBox x:Name="ckbBold" Content="tučně" ToolTip="Tučné písmo." Margin="5,0,0,0.2" Foreground="{StaticResource FontBrush}" />
+                <CheckBox x:Name="ckbClear" Content="zkopírovat" ToolTip="Při přidání nové položky nemazat obsah kolonek a zkopírovat přílohy." Margin="5,0,0,0" Foreground="{StaticResource FontBrush}" />
+                <CheckBox x:Name="ckbLength" Content="delší kolonky" ToolTip="Můžete napsat více textu do některých kolonek, ale v tisku nebude text navíc vidět." Margin="5,0,0,0" Foreground="{StaticResource FontBrush}" Height="15" VerticalAlignment="Bottom" />
+                <CheckBox x:Name="ckbCislo" Content="číslovat" ToolTip="Číslovat pořadové číslo nové položky v rámci všech databází." Margin="5,0,0,0.2" Foreground="{StaticResource FontBrush}" Height="15" VerticalAlignment="Bottom" />
+                <CheckBox x:Name="ckbCombo" Content="seznamy" ToolTip="Rozbalovací seznamy plnit ze všech databází." Margin="5,0,0,0" Foreground="{StaticResource FontBrush}" />
+            </StackPanel>
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnFirst" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" >
+                    <Image Source="{StaticResource imgFirst}" ToolTip="Přejít na první záznam."/>
+                </Button>
+                <Button x:Name="btnBack" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="1">
+                    <Image Source="{StaticResource imgBack}" ToolTip="Přejít na předchozí záznam."/>
+                </Button>
+                <Border BorderBrush="Black" Grid.Column="2" CornerRadius="5" BorderThickness="1,0" Margin="5,10" />
+                <Border BorderBrush="Black" Grid.Column="3" CornerRadius="5" BorderThickness="1,0" Margin="5,10" />
+                <Border BorderBrush="Black" Grid.Column="4" CornerRadius="5" BorderThickness="1,0" Margin="5,10" />
+                <Label Content="pozice" x:Name="txtPozice" VerticalContentAlignment="Center" Grid.Column="2" HorizontalContentAlignment="Center" Margin="5" ToolTip="Stav položky." />
+                <Label Content="{Binding Path=Upraveno}" x:Name="txtUpraveno" VerticalContentAlignment="Center" Grid.Column="3" HorizontalContentAlignment="Center" BorderThickness="0" Margin="5" ToolTip="Naposledy upraveno." />
+
+                <Button x:Name="btnNext" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="4">
+                    <Image Source="{StaticResource imgNext}" ToolTip="Přejít na další záznam."/>
+                </Button>
+                <Button x:Name="btnLast" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="5">
+                    <Image Source="{StaticResource imgLast}" ToolTip="Přejít na poslední záznam."/>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="5,20">
+            <Button x:Name="btnPridat" Margin="0,0,0,0" Background="{StaticResource ControlBrush}">
+                <Image Source="{StaticResource imgPridatVec}" Height="40" ToolTip="Přidat položku."/>
+            </Button>
+            <Button x:Name="btnSmazat" Margin="0,10,0,0" Background="{StaticResource ControlBrush}">
+                <Image Source="{StaticResource imgOdebratVec}" Height="40" ToolTip="Smazat položku." />
+                <Button.ContextMenu>
+                    <ContextMenu >
+                        <MenuItem Header="Označit" Click="cmiMark_Click"/>
+                        <Separator   />
+                        <MenuItem Header="Trvale" Click="cmiDelete_Click">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource imgOdebrat}" Width="16" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+            <Button x:Name="btnPresunout" Margin="0,10,0,0" Background="{StaticResource ControlBrush}">
+                <Image Source="{StaticResource imgPresunoutVec}" Height="40" ToolTip="Přesunout položku&#x0a;do jiné databáze." />
+                <Button.ContextMenu>
+                    <ContextMenu/>
+                </Button.ContextMenu>
+            </Button>
+            <Button x:Name="btnPriloha" Margin="0,30,0,0" Background="{StaticResource ControlBrush}">
+                <Image Source="{StaticResource imgPriloha}" Height="40" ToolTip="Editovat přílohu." />
+            </Button>
+            <Button x:Name="btnUlozit" Margin="0,30,0,0" Background="{StaticResource ControlBrush}">
+                <Image Source="{StaticResource imgUlozit}" Height="40" ToolTip="Uložit změny&#x0a;a ukončit editaci."/>
+            </Button>
+            <Button x:Name="btnNeukladat" Margin="0,10,0,0" Background="{StaticResource ControlBrush}">
+                <Image Source="{StaticResource imgOknoZavrit}" Height="40" ToolTip="Neukládat změny&#x0a;a ukončit editaci."/>
+            </Button>
+        </StackPanel>
+
+
+        <local:FileBrowser Grid.Column="2" x:Name="mFileBrowser" BackColor="{StaticResource ActiveBrush}" Width="Auto" Sloupec="Příloha" />
+    </Grid>
+</Window>
