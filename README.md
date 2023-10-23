@@ -11,9 +11,9 @@ Záznamy lze třídit, prohledávat i přehledně tisknout a můžete k nim při
 
 Extra funkce jsou:
 Sloupečky lze skrýt a záznamy filtrovat.
-Editační tabulka
-Spravovat více databází
-Editovat může více uživatelů najednou
-Heslem lze omezit přístup a editaci
-Použití databáze na serveru
-Zálohování a synchronizace do cloudu
+Editační tabulka.
+Spravovat více databází.
+Editovat může více uživatelů najednou.
+Heslem lze omezit přístup a editaci.
+Použití databáze na serveru.
+Zálohování a synchronizace do cloudu.
